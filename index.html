@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Genre Classification — Thesis Demo</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- PHASE 1 — FAKE THESIS UI                       -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div id="phase1" class="phase1-wrapper">
+
+    <div class="p1-bg-grid"></div>
+
+    <header class="p1-header">
+      <span class="p1-badge">THESIS DEMO</span>
+      <span class="p1-version">v2.4.1-beta</span>
+    </header>
+
+    <main class="p1-main">
+      <div class="p1-terminal-bar">
+        <span class="p1-dot red"></span>
+        <span class="p1-dot yellow"></span>
+        <span class="p1-dot green"></span>
+        <span class="p1-terminal-title">system_init.log</span>
+      </div>
+
+      <div class="p1-log-window" id="logWindow">
+        <p class="log-line" style="animation-delay:0.1s">› Mounting CUDA environment… <span class="log-ok">OK</span></p>
+        <p class="log-line" style="animation-delay:0.5s">› Loading Mel-spectrogram modules… <span class="log-ok">OK</span></p>
+        <p class="log-line" style="animation-delay:1.0s">› Initializing intermediate fusion architecture… <span class="log-ok">OK</span></p>
+        <p class="log-line" style="animation-delay:1.5s">› Ablation config: <span class="log-val">audio+lyrics+metadata</span> <span class="log-ok">LOADED</span></p>
+        <p class="log-line" style="animation-delay:2.0s">› Model weights <span class="log-val">checkpoint_epoch_47.pt</span> restored <span class="log-ok">OK</span></p>
+        <p class="log-line" style="animation-delay:2.4s">› System ready. Awaiting input. <span class="log-cursor">▌</span></p>
+      </div>
+
+      <div class="p1-card">
+        <div class="p1-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <rect x="1" y="1" width="38" height="38" rx="4" stroke="#4a9eff" stroke-width="1.5" stroke-dasharray="4 2"/>
+            <path d="M13 20 L20 13 L27 20 L20 27 Z" stroke="#4a9eff" stroke-width="1.5" fill="none"/>
+            <circle cx="20" cy="20" r="3" fill="#4a9eff" opacity="0.6"/>
+          </svg>
+        </div>
+        <h1 class="p1-title">Music Genre Classification System</h1>
+        <p class="p1-subtitle">Multimodal Deep Learning Thesis Demo</p>
+        <p class="p1-desc">
+          Evaluates audio tracks using a late-fusion transformer pipeline combining
+          Mel-spectrogram CNNs, lyric BERT embeddings, and metadata regression heads.
+          Trained on 120k samples across 15 genre categories.
+        </p>
+
+        <div class="p1-metrics">
+          <div class="p1-metric">
+            <span class="metric-val">94.3%</span>
+            <span class="metric-label">Top-1 Accuracy</span>
+          </div>
+          <div class="p1-metric">
+            <span class="metric-val">0.961</span>
+            <span class="metric-label">F1 Score</span>
+          </div>
+          <div class="p1-metric">
+            <span class="metric-val">120k</span>
+            <span class="metric-label">Training Samples</span>
+          </div>
+        </div>
+
+        <button class="p1-btn" id="startBtn">
+          <span class="p1-btn-text">Start Classification Demo</span>
+          <svg class="p1-btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="p1-loading-overlay" id="loadingOverlay">
+        <div class="p1-loading-inner">
+          <div class="p1-spinner"></div>
+          <p class="p1-loading-status" id="loadingStatus">Extracting audio features...</p>
+          <div class="p1-progress-bar"><div class="p1-progress-fill" id="progressFill"></div></div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="p1-footer">
+      <span>Dept. of Computer Science &amp; Engineering · Thesis Research 2025–2026</span>
+    </footer>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- PHASE 2 — EMOTIONAL STORY SITE                 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div id="phase2" class="phase2-wrapper hidden">
+
+    <!-- SECTION 1: INTRO -->
+    <section class="s-intro reveal-section">
+      <div class="intro-content">
+        <p class="intro-eyebrow">for my gisela aretha permana!</p>
+        <h2 class="intro-headline">hai sayang! i hope this still<br/>comes as a little surprise...</h2>
+        <div class="intro-scroll-hint">
+          <span>scroll</span>
+          <div class="scroll-line"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: IMAGE GALLERY -->
+    <section class="s-gallery reveal-section">
+      <div class="gallery-header reveal-item">
+        <p class="section-label">here are some pictures that i was looking through! we have so many i couldn't choose which ones to show you baby! </p>
+      </div>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- images injected by JS -->
+      </div>
+    </section>
+
+    <!-- SECTION 2.5: MEMORY QUIZ -->
+    <section class="s-quiz reveal-section">
+      <div class="quiz-block reveal-item">
+        <p class="section-label">BABY KIRA KIRA KAMU INGET GAK YA HOW MANY TIMES WE'VE DONE THINGS???</p>
+        <form class="quiz-form" id="quizForm">
+          <div class="quiz-question">
+            <label>How many meals have we shared?</label>
+            <select class="quiz-select" data-answer="25" required>
+              <option value="">— select —</option>
+              <option value="20">20</option>
+              <option value="23">23</option>
+              <option value="25">25</option>
+              <option value="28">28</option>
+            </select>
+          </div>
+
+          <div class="quiz-question">
+            <label>How many songs have we covered?</label>
+            <select class="quiz-select" data-answer="19" required>
+              <option value="">— select —</option>
+              <option value="15">15</option>
+              <option value="17">17</option>
+              <option value="19">19</option>
+              <option value="21">21</option>
+            </select>
+          </div>
+
+          <div class="quiz-question">
+            <label>How many fitchecks have we done?</label>
+            <select class="quiz-select" data-answer="8" required>
+              <option value="">— select —</option>
+              <option value="5">5</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+
+          <div class="quiz-question">
+            <label>How many movies have we watched?</label>
+            <select class="quiz-select" data-answer="4" required>
+              <option value="">— select —</option>
+              <option value="5">5</option>
+              <option value="4">4</option>
+              <option value="8">8</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+
+          <button type="submit" class="quiz-btn">check answers</button>
+        </form>
+        <p class="quiz-response" id="quizResponse"></p>
+      </div>
+    </section>
+
+    <!-- SECTION 3: JOURNEY TEXT -->
+    <section class="s-text reveal-section">
+      <div class="text-block reveal-item">
+        <div class="long-text">
+          <p>Haii my gisel sayang!!! </p>
+
+          <p>I can't believe that it has been 147 days since we've ate nasi balap for breakfast in the morning on the 28th of November!!! Who would've thought that me posting a tiktok mentioning that i was an orphan atau yatim would lead us to talk, create a streak, and then meet up. Nonetheless sayang, we've come so far!!!</p>
+
+          <p>I was looking through our shared album sayang! It is so lovely to me being able to see how we grew or shifted from being friends to even closer friends so on to call ourselves "teman spesial level 2" hehehe all the moments i got to share with you from the start in real life to the past few months virtually have been an absolute blast my baby!</p>
+
+          <p>I want you to know baby that the moments we have shared together these past months have been special to me! From us meeting up to eat nasi balap, to all our other hangouts whether it was the movies, doing song covers, eating fruits, or going to hunt foods… to all our sleepcalls and talks… they've all been so meaningful to me sayang because i got to do all of it with you!!!</p>
+
+          <p>I feel that things with you really just flow naturally! Even when i moved to singapore at the start of this year sayang sampai dengan sekarang juga it really seems that the commitment we have to each other is genuinely mutual!! I still feel close to you though the distance my darling, i still super duper appreciate all the updates dan kabar" you give me and i love how we make the time to talk to each other no matter how long our days are!!</p>
+
+          <p>All in all my darling i love how we are with each other i love what we have!</p>
+
+          <p>Here are the answers btw ya sayang if you were curious hehehe i recapped them as i looked through our album!<br/>
+          Meals we've shared or eaten with each other: 25<br/>
+          Fitchecks we've Done: 8<br/>
+          Movies we've watched: 4<br/>
+          Total covers we have done: 19<br/>
+          Also heres a chronological list of the covers we've done!<br/>
+          1. Lemonade - Jeremy Passion<br/>
+          2. I will fly - ten2five<br/>
+          3. Just the two of us<br/>
+          4. Someone to spend time with<br/>
+          5. Saving all my love for you<br/>
+          6. Officially Missing You<br/>
+          7. Easy<br/>
+          8. Aku ada rahasia<br/>
+          9. Hanya untukmu<br/>
+          10. Get you<br/>
+          11. Thinking out loud<br/>
+          12. Valentine<br/>
+          13. How deep is your love<br/>
+          14. Dekat di hati<br/>
+          15. Hanya untukmu<br/>
+          16. How deep is your love<br/>
+          17. I will fly<br/>
+          18. Last night on earth<br/>
+          19. Remaja
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: VIDEO -->
+    <section class="s-video reveal-section">
+      <div class="video-block reveal-item">
+        <p class="section-label">i made you a little somethingggg!!! </p>
+        <button class="music-pause-btn" id="musicPauseBtn">let's turn off the music for now yaa babyy!!</button>
+        <div class="video-container">
+          <!-- REPLACE THE src BELOW WITH YOUR UNLISTED YOUTUBE EMBED URL -->
+          <!-- Example: https://www.youtube.com/embed/YOUR_VIDEO_ID -->
+          <iframe
+            id="youtubeFrame"
+            src="https://www.youtube.com/embed/O1iAdvc0OtU?si=v3TPclOAfeusJu6Y"
+            title="A video for you"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: REALIZATION TEXT -->
+    <section class="s-text s-text--alt reveal-section">
+      <div class="text-block reveal-item">
+        <div class="long-text">
+          <p>Gisel, i want to be real with you.</p>
+
+          <p>When i first started talking to you and hanging out with you aku beneran never thought that things could become the way they are, and though initially i just wanted to get to know you to make a new friend, i am so happy and grateful that i feel that we are so much more than that now!</p>
+
+          <p>I'll be honest sayang, i did for sure start liking you first and when you mentioned that you weren't sure of whether you liked me back yet i was a bit sad but also happy at the same time knowing that you were real enough and honest enough to mention to me that well you weren't sure yet. It made me feel that by the time you do say that you like me back that it is actually genuine.</p>
+
+          <p>I like how we continued hanging out making sure that we make use of the time we have! Getting to know each other and also being able to support each other now too! Back then baby i realized that i wanted to get to know you much deeper as someone more than a friend… but instead as someone that i wanted to be with!</p>
+
+          <p>I started becoming much more open to you… talking about my own vulnerabilities, my own feelings, the sides of me that i don't show to anyone. I am glad sayang that you were able to accept that and also show me sides of you too. I am so glad that you put in the effort to love me the way i want to be loved. Asking me what i need from you when i would come to you with my thoughts and worries and feelings.</p>
+
+          <p>With you i felt safe, i felt that i could tell you anything that i would need to vent out off my chest or take off my shoulders and you'd always be there for me.</p>
+
+          <p>I was incredibly happy as well when you were so open and accepting when i talked about the things i didn't like about you. I think one of the most significant moments throughout my talks with you sayang was when i told you things about yourself that i wasn't fond off straight to you and you were able to acually accept it and see it as rooms for growth. But not only did you accept and were able to hear them out but you actually put in the effort to also change and work on those areas. And that is what made me fall in love with you sayang. You were able to actually listen and try. And to me i saw that as love.</p>
+
+          <p>It genuinely showed me that to love is to learn and that to learn is to love!</p>
+
+          <p>I am so happy that i was able to see you grow into the person that you are now, while being able to grow with you as well! You allowed me to share my feelings and show you vulnerable sides of me while you also made the effort to do exactly the same! You gave me reassurance, validation, and empathy and you were able to come to me also for me to be able to care for you too and show you that i love you too baby!</p>
+
+          <p>All in all sayang i genuinely love you and am so proud of you sayang for all that you have done these past few months. Thank you darling for allowing me to become a part of your life recently. I want you to know that i am serious about you and our relationship and am so excited for everything else that we can do together or with each others support!</p>
+
+          <p>My darling my gisel you are such an incredible person and such a loving kind soul! You are so beautiful, you are smart, you work hard, and you have ambition for your dreams! You truly want to learn to become better and you’ve proven that to me time and time again! Everytime i need to talk to you sayang about something i feel safe and comfortable enough to be able to bring it up! You are always willing to hear me out, you are always willing to share what youve been going through. You are willing to put in the effort to try and become better and that is what make me sure of you and sure of us sayang! </p>
+
+          <p>Sayang, what we have built for the past 147 days to me have been so real and genuine. And i dont want to treat it like something uncertain anymore. I dont want to keep this thing that we have as undefined…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: TRANSITION LINE -->
+    <section class="s-meta reveal-section">
+      <div class="meta-block reveal-item">
+        <p class="meta-line">i genuinely feel that what we have is worth something...</p>
+      </div>
+    </section>
+
+    <!-- SECTION 7: FINAL QUESTION -->
+    <section class="s-question reveal-section">
+      <div class="question-block reveal-item">
+        <p class="question-text">so, to make it official... can i be your boyfriend?</p>
+        <div class="question-btns">
+          <button class="q-btn q-btn--yes" id="btnYes">yes 🤍</button>
+          <button class="q-btn q-btn--of-course" id="btnOfCourse">yes! of course!! </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: FINAL SCREEN -->
+    <section class="s-final" id="finalSection">
+      <div id="rosesContainer" class="roses-container"></div>
+      <div class="final-content">
+        <p class="final-text" id="finalText">yayyyyyy!!!<br/>it's finally official!! i love you so much, my sayang my baby my gisela!🤍</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Background Audio -->
+  <audio id="backgroundMusic" loop>
+    <source src="./images/openArmsInstrumental.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Final Answer Audio -->
+  <audio id="answerMusic">
+    <source src="./images/openArms.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
